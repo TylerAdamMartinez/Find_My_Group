@@ -54,7 +54,7 @@
             </form>
           </div>
 
-          <!---- BOTTOM MESSAGES ARE MOST ----->
+          <!---- BOTTOM MESSAGES ARE MOST RECENT----->
         </div>
       </div>
     </q-page-container>
