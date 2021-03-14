@@ -1,18 +1,17 @@
 
 <template>
   <q-layout view="lHh Lpr lFf">
-    <!---HOMEPAGE TITLE BAR --->
+    <!-- HOMEPAGE TITLE BAR -->
     <q-header elevated class="bg-primary text-white" height-hint="98">
-      <q-toolbar>
-        <q-btn dense flat round icon="menu" @click="left = !left" />
+      <!-- <q-toolbar>
+        <q-avatar rounded size="100px">
+          <img id="flag_logo" src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Flag_of_Texas.svg">
+        </q-avatar>
         <q-toolbar-title>
-          <q-avatar>
-            <img src="src/assets/images_for_web/texas.jpeg">
-          </q-avatar>
           Find My Group
         </q-toolbar-title>
-      </q-toolbar>
-      <!---TITLE BAR TABS --->
+      </q-toolbar> -->
+      <!-- TITLE BAR TABS -->
       <q-tabs align="center">
         <q-route-tab to="/" label="Home Page" />
         <q-route-tab to="/map" label="Find Others" />
@@ -29,3 +28,11 @@
 <script>
 
 </script>
+
+<style>
+  #flag_logo {
+    height: 45px;
+    width: 45px;
+  }
+
+</style>

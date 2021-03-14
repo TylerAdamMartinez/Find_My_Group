@@ -1,18 +1,19 @@
 
 <template>
   <q-layout view="hHh lpR fFf">
-    <!---- MESSAGE BOX ----->
-    <q-page-container>
-      <div class="q-pa-md row justify-center" >
-        <div style="width: 100%; max-width: 400px">
-          <!--- TOP MESSAGES GET DISPLAYED LAST----->
+    <!-- MESSAGE BOX -->
+    <div id="container" >
+      <span> </span>
+      <div id="chat_box">
+        <div style="max-width: 400px">
+          <!-- TOP MESSAGES GET DISPLAYED LAST -->
           <q-chat-message
             name="me"
             avatar="https://cdn.quasar.dev/img/avatar1.jpg"
             :text="['Heyyy you awake?']"
             stamp="15 minutes ago"
             sent
-            bg-color="amber-7"
+            bg-color="secondary"
           />
           <q-chat-message
             name="Jane"
@@ -28,7 +29,7 @@
             :text="['Thats whats up. Down to chill lol']"
             stamp="9 minutes ago"
             sent
-            bg-color="amber-7"
+            bg-color="secondary"
           />
           <q-chat-message
             name="Jane"
@@ -44,23 +45,52 @@
             :text="['Bettt omw']"
             stamp="Now"
             sent
-            bg-color="amber-7"
+            bg-color="secondary"
           />
-          <!---- BOTTOM MESSAGES ARE MOST RECENT----->
-          <!---- TEXT INPUT BOX ---->
+          <!-- BOTTOM MESSAGES ARE MOST RECENT -->
+          <!-- TEXT INPUT BOX -->
           <div class="q-pa-md row justify-center">
             <q-form @submit="/* FIX_ME (onSubmit) */" class="q-gutter-md"/>
               <form name="message" action=" ">
-                <input style="width: 75%" type="text"/>
-                <q-btn round color="primary" icon="navigation" />
+                <input id="message_input"  type="text"/>
+                <q-btn id="message_btn" round color="primary" icon="navigation" />
               </form>
           </div>
         </div>
       </div>
-    </q-page-container>
+      <span> </span>
+    </div>
   </q-layout>
 </template>
 
 <script>
 
 </script>
+
+
+<style>
+#message_input {
+  width: 275px;
+  border: 2px solid #31CCEC;
+  border-radius: 15px;
+  height: 40px;
+}
+
+#message_btn {
+  margin-left: 15px;
+}
+
+#chat_box {
+  margin-top: 45px;
+  border: 2px solid #31CCEC;
+  border-radius: 15px;
+  width: 400px;
+  padding: 15px;
+}
+
+#container {
+  display: grid;
+  grid-template-columns: auto 400px auto;
+}
+
+</style>

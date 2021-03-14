@@ -1,7 +1,7 @@
 
 <template>
   <q-layout view="lHh Lpr lFf">
-    <!---HOMEPAGE TITLE BAR --->
+    <!-- HOMEPAGE TITLE BAR -->
     <q-header elevated class="bg-primary text-white" height-hint="98">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="left = !left" />
@@ -12,7 +12,7 @@
           THIS MAPS SHOWS OTHERS NEAR YOU
         </q-toolbar-title>
       </q-toolbar>
-      <!---TITLE BAR TABS --->
+      <!-- TITLE BAR TABS -->
       <q-tabs align="center">
         <q-route-tab to="/" label="Home Page" />
         <q-route-tab to="/map" label="Find Others" />
