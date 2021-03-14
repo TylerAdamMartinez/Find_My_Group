@@ -6,7 +6,7 @@
       <iframe 
         :style="ShowDarkMode_border"
         width="400"
-        height="785" 
+        height="400" 
         frameborder="0" 
         scrolling="no" 
         marginheight="0" 

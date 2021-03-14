@@ -13,8 +13,8 @@
       </q-toolbar> -->
       <!-- TITLE BAR TABS -->
       <q-tabs align="center">
-        <q-route-tab to="/" label="Home Page" />
         <q-route-tab to="/map" label="Find Others" />
+        <q-route-tab to="/" label="Home Page" />
         <q-route-tab to="/my_account" label="My Account" />
       </q-tabs>
     </q-header>

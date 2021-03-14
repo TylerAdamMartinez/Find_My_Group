@@ -6,83 +6,11 @@
 <span></span>
 <div id="login_menu" class="q-pa-md row justify-center" :style="ShowDarkMode_border_Orange">
   <div >
-    <q-btn-dropdown 
-      :color="ShowDarkMode_Orange" 
-      label="Sign in here" 
-      dropdown-icon="menu_open">
-      <q-list unelevated :style="ShowDarkMode_border_Orange" id="login_list" style="width: 350px; margin-top: 0px;">
-
-        <q-item>
-          <q-item-section>
-            <q-input v-model="text" label="Email" :color="ShowDarkMode_Orange"/>
-          </q-item-section>
-        </q-item>
-
-        <q-item>
-          <q-item-section>
-            <q-input v-model="text" label="Password" :color="ShowDarkMode_Orange"/>
-          </q-item-section>
-        </q-item>
-        <!-- CHECKBOX -->
-        <q-item>
-          <q-item-section>
-            <q-checkbox class="flex flex-center"
-                v-model="customModel"
-                color="secondary"
-                label="Keep me logged in"
-                true-value="yes"
-                false-value="no"
-            />
-          </q-item-section>
-        </q-item>
-
-      </q-list>
-    </q-btn-dropdown>
+    <Auth />
   </div>
   <!-- DROPDOWN MENU FOR NEW MEMBER -->
   <div class="q-pa-md row justify-center">
-    <q-btn-dropdown 
-      :color="ShowDarkMode_Orange" 
-      label="Create an account"
-      dropdown-icon="menu_open">
-      <q-list :style="ShowDarkMode_border_Orange" id="login_list" style="width: 350px; margin-top: 0px;">
-        <q-item>
-          <q-item-section>
-            <q-input v-model="text" label="Email" :color="ShowDarkMode_Orange"/>
-          </q-item-section>
-        </q-item>
-        
-        <q-item>
-          <q-item-section>
-            <q-input v-model="text" label="Username" :color="ShowDarkMode_Orange"/>
-          </q-item-section>
-        </q-item>
-
-        <q-item>
-          <q-item-section>
-            <q-input v-model="text" label="Password" :color="ShowDarkMode_Orange"/>
-          </q-item-section>
-        </q-item>
-
-        <q-item>
-          <q-item-section>
-            <q-input v-model="text" label="Confirm Password" :color="ShowDarkMode_Orange"/>
-          </q-item-section>
-        </q-item>
-        <!-- CHECKBOX -->
-        <q-item>
-          <q-item-section>
-            <q-checkbox class="flex flex-center"
-                v-model="customModel02"
-                color="secondary"
-                label="I agree with the terms & conditions"
-                true-value="yes"
-                false-value="no"
-            />
-          </q-item-section>
-        </q-item>
-      </q-list>
-    </q-btn-dropdown>
+    <Register />
   </div>
 </div>
 <span></span>
@@ -97,10 +25,11 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   data () {
-      return {
-      customModel: 'no',
-      customModel02: 'no',
-      text: ''
+    return {
+      AuthFromData: {
+        email: 'email@email.com',
+        password: '*********'
+      }  
     }
   },
   methods: {
@@ -150,6 +79,10 @@ export default {
         return "background: grey"
       }
     }
+  },
+  components: {
+    'Auth' : require('components/Auth.vue').default,
+    'Register' : require('components/Register.vue').default
   }
 }
 
