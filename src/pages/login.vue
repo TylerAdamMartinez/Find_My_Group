@@ -1,91 +1,188 @@
 <template>
- <q-layout view="hHh lpR fFf">
-  <q-form
-      @submit="onSubmit"
-      @reset="onReset"
-      class="q-gutter-md"
-    >
-      <q-input
-        filled
-        v-model="name"
-        label="Your name *"
-        hint="Name and surname"
-        lazy-rules
-        :rules="[ val => val && val.length > 0 || 'Please type something']"
-      />
+  <q-layout :style="ShowDarkMode_bg_Grey">
+  <!-- DROP DOWN MENU FOR LOGIN -->
+<div id="top_space"></div>
+<div id="container">
+<span></span>
+<div id="login_menu" class="q-pa-md row justify-center" :style="ShowDarkMode_border_Orange">
+  <div >
+    <q-btn-dropdown 
+      :color="ShowDarkMode_Orange" 
+      label="Sign in here" 
+      dropdown-icon="menu_open">
+      <q-list unelevated :style="ShowDarkMode_border_Orange" id="login_list" style="width: 350px; margin-top: 0px;">
 
-      <q-input
-        filled
-        type="number"
-        v-model="age"
-        label="Your age *"
-        lazy-rules
-        :rules="[
-          val => val !== null && val !== '' || 'Please type your age',
-          val => val > 0 && val < 100 || 'Please type a real age'
-        ]"
-      />
+        <q-item>
+          <q-item-section>
+            <q-input v-model="text" label="Email" :color="ShowDarkMode_Orange"/>
+          </q-item-section>
+        </q-item>
 
-      <q-toggle v-model="accept" label="I accept the license and terms" />
+        <q-item>
+          <q-item-section>
+            <q-input v-model="text" label="Password" :color="ShowDarkMode_Orange"/>
+          </q-item-section>
+        </q-item>
+        <!-- CHECKBOX -->
+        <q-item>
+          <q-item-section>
+            <q-checkbox class="flex flex-center"
+                v-model="customModel"
+                color="secondary"
+                label="Keep me logged in"
+                true-value="yes"
+                false-value="no"
+            />
+          </q-item-section>
+        </q-item>
 
-      <div>
-        <q-btn label="Submit" type="submit" color="primary"/>
-        <q-btn label="Reset" type="reset" color="primary" flat class="q-ml-sm" />
-      </div>
-    </q-form>
-
+      </q-list>
+    </q-btn-dropdown>
   </div>
- </q-layout>
+  <!-- DROPDOWN MENU FOR NEW MEMBER -->
+  <div class="q-pa-md row justify-center">
+    <q-btn-dropdown 
+      :color="ShowDarkMode_Orange" 
+      label="Create an account"
+      dropdown-icon="menu_open">
+      <q-list :style="ShowDarkMode_border_Orange" id="login_list" style="width: 350px; margin-top: 0px;">
+        <q-item>
+          <q-item-section>
+            <q-input v-model="text" label="Email" :color="ShowDarkMode_Orange"/>
+          </q-item-section>
+        </q-item>
+        
+        <q-item>
+          <q-item-section>
+            <q-input v-model="text" label="Username" :color="ShowDarkMode_Orange"/>
+          </q-item-section>
+        </q-item>
+
+        <q-item>
+          <q-item-section>
+            <q-input v-model="text" label="Password" :color="ShowDarkMode_Orange"/>
+          </q-item-section>
+        </q-item>
+
+        <q-item>
+          <q-item-section>
+            <q-input v-model="text" label="Confirm Password" :color="ShowDarkMode_Orange"/>
+          </q-item-section>
+        </q-item>
+        <!-- CHECKBOX -->
+        <q-item>
+          <q-item-section>
+            <q-checkbox class="flex flex-center"
+                v-model="customModel02"
+                color="secondary"
+                label="I agree with the terms & conditions"
+                true-value="yes"
+                false-value="no"
+            />
+          </q-item-section>
+        </q-item>
+      </q-list>
+    </q-btn-dropdown>
+  </div>
+</div>
+<span></span>
+</div>
+
+  
+</q-layout>
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
   data () {
-    return {
-      name: null,
-      age: null,
-
-      accept: false
+      return {
+      customModel: 'no',
+      customModel02: 'no',
+      text: ''
     }
   },
-
   methods: {
-    onSubmit () {
-      if (this.accept !== true) {
-        this.$q.notify({
-          color: 'red-5',
-          textColor: 'white',
-          icon: 'warning',
-          message: 'You need to accept the license and terms first'
-        })
+    ...mapActions('settings', ['setIsDarkMode'])
+  },
+  computed: {
+    ...mapGetters('settings', ['settings']),
+    IsDarkMode: {
+      get(){
+        return this.settings.IsDarkMode
+      },
+      set(value) {
+        this.setIsDarkMode(value)
+      } 
+    },
+    ShowDarkMode_Orange() {
+      if (!this.settings.IsDarkMode) {
+        return "primary"
       }
       else {
-        this.$q.notify({
-          color: 'green-4',
-          textColor: 'white',
-          icon: 'cloud_done',
-          message: 'Submitted'
-        })
+        return "orange"
       }
     },
-
-    onReset () {
-      this.name = null
-      this.age = null
-      this.accept = false
+    ShowDarkMode_text_Orange() {
+      if (!this.settings.IsDarkMode) {
+        return "text-primary"
+      }
+      else {
+        return "text-orange"
+      }
+      
+    },
+    ShowDarkMode_border_Orange() {
+      if (!this.settings.IsDarkMode) {
+        return "border-color: #31CCEC"
+      }
+      else {
+        return "border-color: orange"
+      }
+      
+    },
+    ShowDarkMode_bg_Grey() {
+      if (!this.settings.IsDarkMode) {
+        return "background: white"
+      }
+      else {
+        return "background: grey"
+      }
     }
   }
 }
+
 </script>
 
-
 <style>
+.q-btn-dropdown {
+  margin: 15px;
+  width: 350px;
+}
 
-.q-list {
+#login_list {
+  border: 2px solid #31CCEC;
+  border-radius: 5px;
+  align-items: center;
+}
+
+#login_menu {
   border: 2px solid #31CCEC;
   border-radius: 15px;
   width: 400px;
-  margin-top: 45px;
+  
 }
+
+#container {
+  display: grid;
+  grid-template-columns: auto 400px auto;
+}
+
+#top_space {
+  padding-top: 45px;
+}
+
+
 
 </style>
