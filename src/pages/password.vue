@@ -1,0 +1,173 @@
+<template>
+  <q-layout :style="ShowDarkMode_bg_Grey">
+  <!-- DROP DOWN MENU FOR LOGIN -->
+<div id="top_space"></div>
+<div id="container">
+<span></span>
+<div id="login_menu" class="q-pa-md row justify-center" :style="ShowDarkMode_border_Orange">
+  <div >
+    <q-btn-dropdown 
+      :color="ShowDarkMode_Orange" 
+      label="Change Password" 
+      dropdown-icon="menu_open">
+      <q-list unelevated :style="ShowDarkMode_border_Orange" id="login_list" style="width: 350px; margin-top: 0px;">
+
+        <q-item style="padding: 15px;" class="flex flex-center">
+          <q-btn :color="ShowDarkMode_Orange">Forgot</q-btn>
+        </q-item>
+
+        <q-item style="padding: 15px;" class="flex flex-center">
+          <q-btn :color="ShowDarkMode_Orange">Change</q-btn>
+        </q-item>
+        <!-- CHECKBOX -->
+        <q-item>
+          <q-item-section>
+            <q-checkbox class="flex flex-center"
+                v-model="customModel"
+                color="secondary"
+                label="Keep me logged in"
+                true-value="yes"
+                false-value="no"
+            />
+          </q-item-section>
+        </q-item>
+
+      </q-list>
+    </q-btn-dropdown>
+  </div>
+  <!-- DROPDOWN MENU FOR NEW MEMBER -->
+  <div class="q-pa-md row justify-center">
+    <q-btn-dropdown 
+      :color="ShowDarkMode_Orange" 
+      label="Two Factor Authentication (2FA)"
+      dropdown-icon="menu_open">
+      <q-list :style="ShowDarkMode_border_Orange" id="login_list" style="width: 350px; margin-top: 0px;">
+        <q-item>
+          <q-item-section>
+            <q-input v-model="text" label="Email" :color="ShowDarkMode_Orange"/>
+          </q-item-section>
+        </q-item>
+        
+        <q-item>
+          <q-item-section>
+            <q-input v-model="text" label="Phone" :color="ShowDarkMode_Orange"/>
+          </q-item-section>
+        </q-item>
+
+        <!-- CHECKBOX -->
+        <q-item>
+          <q-item-section>
+            <q-checkbox class="flex flex-center"
+                v-model="customModel02"
+                color="secondary"
+                label="I agree with the terms & conditions"
+                true-value="yes"
+                false-value="no"
+            />
+          </q-item-section>
+        </q-item>
+      </q-list>
+    </q-btn-dropdown>
+  </div>
+</div>
+<span></span>
+</div>
+
+  
+</q-layout>
+</template>
+
+<script>
+import { mapGetters, mapActions } from 'vuex'
+
+export default {
+  data () {
+      return {
+      customModel: 'no',
+      customModel02: 'no',
+      text: ''
+    }
+  },
+  methods: {
+    ...mapActions('settings', ['setIsDarkMode'])
+  },
+  computed: {
+    ...mapGetters('settings', ['settings']),
+    IsDarkMode: {
+      get(){
+        return this.settings.IsDarkMode
+      },
+      set(value) {
+        this.setIsDarkMode(value)
+      } 
+    },
+    ShowDarkMode_Orange() {
+      if (!this.settings.IsDarkMode) {
+        return "primary"
+      }
+      else {
+        return "orange"
+      }
+    },
+    ShowDarkMode_text_Orange() {
+      if (!this.settings.IsDarkMode) {
+        return "text-primary"
+      }
+      else {
+        return "text-orange"
+      }
+      
+    },
+    ShowDarkMode_border_Orange() {
+      if (!this.settings.IsDarkMode) {
+        return "border-color: #31CCEC"
+      }
+      else {
+        return "border-color: orange"
+      }
+      
+    },
+    ShowDarkMode_bg_Grey() {
+      if (!this.settings.IsDarkMode) {
+        return "background: white"
+      }
+      else {
+        return "background: grey"
+      }
+    }
+  }
+}
+
+</script>
+
+<style>
+.q-btn-dropdown {
+  margin: 15px;
+  width: 350px;
+}
+
+#login_list {
+  border: 2px solid #31CCEC;
+  border-radius: 5px;
+  align-items: center;
+}
+
+#login_menu {
+  border: 2px solid #31CCEC;
+  border-radius: 15px;
+  width: 400px;
+  
+}
+
+#container {
+  display: grid;
+  grid-template-columns: auto 400px auto;
+}
+
+#top_space {
+  padding-top: 45px;
+}
+
+
+
+</style>

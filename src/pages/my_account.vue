@@ -5,7 +5,7 @@
       <q-item tag="label" clickable v-ripple>
         <q-item-section avatar>
           <q-avatar color="white" :text-color="ShowDarkMode_Orange">
-            <q-icon name= settings />
+            <q-icon name="settings" />
           </q-avatar>
         </q-item-section>
         <q-item-section>Activate Dark Mode</q-item-section>
@@ -14,12 +14,24 @@
         </q-item-section>
       </q-item>
       <q-separator/>
-        <!-------- USER's NAME ------>
+      <!-------------Login/Create Account ------------>
+      <q-item to="/login" exact clickable v-ripple>
+        <q-item-section avatar>
+          <q-avatar color="white" :text-color="ShowDarkMode_Orange">
+            <q-icon name="assignment_ind" />
+          </q-avatar>
+        </q-item-section>
+
+        <q-item-section>Login | Create Account</q-item-section>
+      </q-item>
+
+      <q-separator />
+      <!-------- USER's NAME ------>
       <q-expansion-item
         expand-separator
         :header-class="ShowDarkMode_text_Orange"
         icon="perm_identity"
-        label="Name/Username" >
+        label="Username" >
         <q-card>
           <q-card-section>
             {{ user.name }}
@@ -41,7 +53,7 @@
       </q-expansion-item>
       <q-separator/>
       <!------------- PASSWORD ------------>
-      <q-item clickable v-ripple>
+      <q-item to="/password" exact clickable v-ripple>
         <q-item-section avatar>
           <q-avatar color="white" :text-color="ShowDarkMode_Orange">
             <q-icon name= password />
