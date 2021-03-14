@@ -7,7 +7,7 @@
         <q-btn dense flat round icon="menu" @click="left = !left" />
         <q-toolbar-title>
           <q-avatar>
-            <img src="src/assets/images_for_web">
+            <img src="src/assets/images_for_web/texas.jpeg">
           </q-avatar>
           Find My Group
         </q-toolbar-title>

@@ -46,15 +46,15 @@
             sent
             bg-color="amber-7"
           />
-          <div class="q-pa-md row justify-center">
-          <q-form @submit="onSubmit" class="q-gutter-md"/>
-            <form name="message" action=" ">
-              <input type="text"/>
-              <q-btn label="Submit" type="submit" color="primary"/>
-            </form>
-          </div>
-
           <!---- BOTTOM MESSAGES ARE MOST RECENT----->
+          <!---- TEXT INPUT BOX ---->
+          <div class="q-pa-md row justify-center">
+            <q-form @submit="/* FIX_ME (onSubmit) */" class="q-gutter-md"/>
+              <form name="message" action=" ">
+                <input style="width: 75%" type="text"/>
+                <q-btn round color="primary" icon="navigation" />
+              </form>
+          </div>
         </div>
       </div>
     </q-page-container>
