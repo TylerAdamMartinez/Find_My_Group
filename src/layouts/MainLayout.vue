@@ -2,7 +2,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <!-- HOMEPAGE TITLE BAR -->
-    <q-header elevated class="bg-primary text-white" height-hint="98">
+    <q-header elevated :class="ShowDarkMode_header" height-hint="98">
       <!-- <q-toolbar>
         <q-avatar rounded size="100px">
           <img id="flag_logo" src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Flag_of_Texas.svg">
@@ -26,6 +26,32 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
+
+export default {
+  methods: {
+    ...mapActions('settings', ['setIsDarkMode'])
+  },
+  computed: {
+    ...mapGetters('settings', ['settings']),
+    IsDarkMode: {
+      get(){
+        return this.settings.IsDarkMode
+      },
+      set(value) {
+        this.setIsDarkMode(value)
+      }
+    },
+    ShowDarkMode_header() {
+      if (!this.settings.IsDarkMode) {
+        return "bg-primary text-white"
+      }
+      else {
+        return "bg-orange text-black"
+      }
+    }
+  }
+}
 
 </script>
 

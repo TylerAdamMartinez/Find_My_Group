@@ -1,10 +1,10 @@
 
 <template>
-  <q-layout view="hHh lpR fFf">
+  <q-layout view="hHh lpR fFf" :style="ShowDarkMode_bg_Grey">
     <!-- MESSAGE BOX -->
     <div id="container" >
       <span> </span>
-      <div id="chat_box">
+      <div id="chat_box" :style="ShowDarkMode_border">
         <div style="max-width: 400px">
           <!-- TOP MESSAGES GET DISPLAYED LAST -->
           <q-chat-message
@@ -13,6 +13,7 @@
             :text="['Heyyy you awake?']"
             stamp="15 minutes ago"
             sent
+            text-color="white"
             bg-color="secondary"
           />
           <q-chat-message
@@ -21,7 +22,7 @@
             :text="['Yea just watchin netflix']"
             stamp="10 minutes ago"
             text-color="white"
-            bg-color="primary"
+            :bg-color="ShowDarkMode_Orange"
           />
           <q-chat-message
             name="me"
@@ -29,6 +30,7 @@
             :text="['Thats whats up. Down to chill lol']"
             stamp="9 minutes ago"
             sent
+            text-color="white"
             bg-color="secondary"
           />
           <q-chat-message
@@ -37,7 +39,7 @@
             :text="['Come thru']"
             stamp="2 minutes ago"
             text-color="white"
-            bg-color="primary"
+            :bg-color="ShowDarkMode_Orange"
           />
           <q-chat-message
             name="me"
@@ -45,6 +47,7 @@
             :text="['Bettt omw']"
             stamp="Now"
             sent
+            text-color="white"
             bg-color="secondary"
           />
           <!-- BOTTOM MESSAGES ARE MOST RECENT -->
@@ -52,8 +55,8 @@
           <div class="q-pa-md row justify-center">
             <q-form @submit="/* FIX_ME (onSubmit) */" class="q-gutter-md"/>
               <form name="message" action=" ">
-                <input id="message_input"  type="text"/>
-                <q-btn id="message_btn" round color="primary" icon="navigation" />
+                <input id="message_input"  type="text" :style="ShowDarkMode_border"/>
+                <q-btn id="message_btn" round :color="ShowDarkMode_Orange" icon="navigation" />
               </form>
           </div>
         </div>
@@ -64,7 +67,48 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 
+export default {
+  methods: {
+    ...mapActions('settings', ['setIsDarkMode'])
+  },
+  computed: {
+    ...mapGetters('settings', ['settings']),
+    IsDarkMode: {
+      get(){
+        return this.settings.IsDarkMode
+      },
+      set(value) {
+        this.setIsDarkMode(value)
+      }
+    },
+    ShowDarkMode_border() {
+      if (!this.settings.IsDarkMode) {
+        return "border-color: primary;"
+      }
+      else {
+        return "border-color: orange;"
+      }
+    },
+    ShowDarkMode_bg_Grey() {
+      if (!this.settings.IsDarkMode) {
+        return "background: white"
+      }
+      else {
+        return "background: grey"
+      }
+    },
+  ShowDarkMode_Orange() {
+      if (!this.settings.IsDarkMode) {
+        return "primary"
+      }
+      else {
+        return "orange"
+      }
+    }
+  }
+}
 </script>
 
 

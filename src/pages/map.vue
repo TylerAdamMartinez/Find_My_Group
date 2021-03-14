@@ -1,9 +1,10 @@
 
 <template>
   <!---DISPLAYING MAP ---->
-  <q-layout view="hHh lpR fFf">
+  <q-layout view="hHh lpR fFf" :style="ShowDarkMode_bg_Grey">
     <div class="flex flex-center">
       <iframe 
+        :style="ShowDarkMode_border"
         width="400" 
         height="600" 
         frameborder="0" 
@@ -19,7 +20,41 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 
+export default {
+  methods: {
+    ...mapActions('settings', ['setIsDarkMode'])
+  },
+  computed: {
+    ...mapGetters('settings', ['settings']),
+    IsDarkMode: {
+      get(){
+        return this.settings.IsDarkMode
+      },
+      set(value) {
+        this.setIsDarkMode(value)
+      }
+    },
+    ShowDarkMode_border() {
+      if (!this.settings.IsDarkMode) {
+        return "border-color: primary;"
+      }
+      else {
+        return "border-color: orange;"
+      }
+    },
+        ShowDarkMode_bg_Grey() {
+      if (!this.settings.IsDarkMode) {
+        return "background: white"
+      }
+      else {
+        return "background: grey"
+      }
+      
+    }
+  }
+}
 </script>
 
 
