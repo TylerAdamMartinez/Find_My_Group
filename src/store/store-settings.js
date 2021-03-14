@@ -1,3 +1,5 @@
+import { LocalStorage } from 'quasar'
+
 const state = {
   settings: {
     IsDarkMode: false
@@ -7,12 +9,29 @@ const state = {
 const mutations = {
   setIsDarkMode( state , value) {
     state.settings.IsDarkMode = value
+  }, 
+  setSettings( state, settings) {
+    Object.assign(state.settings, settings)
   }
+
 }
 
 const actions = {
-  setIsDarkMode( { commit }, value) {
-    commit('setIsDarkMode', value)
+  setIsDarkMode( { commit , dispatch}, value) {
+    commit('setIsDarkMode', value);
+    dispatch('saveSettings');
+
+
+  },
+  saveSettings({state}) {
+    LocalStorage.set('settings', state.settings)
+  },
+  getSettings({commit}) {
+    let settings = LocalStorage.getItem('settings')
+    if(settings) {
+      commit('setSettings', settings)
+    }
+    
   }
 }
 

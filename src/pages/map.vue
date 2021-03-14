@@ -5,8 +5,8 @@
     <div class="flex flex-center">
       <iframe 
         :style="ShowDarkMode_border"
-        width="400" 
-        height="600" 
+        width="400"
+        height="785" 
         frameborder="0" 
         scrolling="no" 
         marginheight="0" 
@@ -64,6 +64,7 @@ iframe {
   border: 2px solid #31CCEC;
   border-radius: 15px;
   margin-top: 45px;
+
 }
 
 </style>
